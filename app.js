@@ -34,8 +34,9 @@ const escapeHtml = (text) => String(text).replace(/[&<>"']/g, (char) => ({ '&': 
 const card = (item, index) => {
   const number = String(index + 1).padStart(2, '0');
   const tags = item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('');
-  const secondary = item.secondary ? `<a class="secondary" href="${escapeHtml(item.secondary)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.secondaryLabel)} ↗</a>` : '';
-  return `<article class="project-card" data-category="${item.category}"><span class="project-index" aria-hidden="true">${number}</span><div class="project-body"><p class="project-meta">${escapeHtml(item.kind)} / ${escapeHtml(item.category)}</p><h3>${escapeHtml(item.title)}</h3><p class="project-description">${escapeHtml(item.description)}</p><div class="project-tags">${tags}</div><div class="project-links"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.linkLabel)} ↗</a>${secondary}</div></div><span class="project-status">${escapeHtml(item.status)}</span></article>`;
+  const arrow = '<span class="project-link-arrow" aria-hidden="true">↗</span>';
+  const secondary = item.secondary ? `<a class="secondary" href="${escapeHtml(item.secondary)}" target="_blank" rel="noopener noreferrer"><span>${escapeHtml(item.secondaryLabel)}</span>${arrow}</a>` : '';
+  return `<article class="project-card" data-category="${item.category}"><span class="project-index" aria-hidden="true">${number}</span><div class="project-body"><p class="project-meta">${escapeHtml(item.kind)} / ${escapeHtml(item.category)}</p><h3>${escapeHtml(item.title)}</h3><p class="project-description">${escapeHtml(item.description)}</p><div class="project-tags">${tags}</div><div class="project-links"><a class="primary" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer"><span>${escapeHtml(item.linkLabel)}</span>${arrow}</a>${secondary}</div></div><span class="project-status">${escapeHtml(item.status)}</span></article>`;
 };
 
 function renderProjects() {
